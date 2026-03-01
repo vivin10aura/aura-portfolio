@@ -566,7 +566,7 @@ export default function App() {
               <AuraLogo className="w-8 h-8" />
               <span className="text-xl font-bold tracking-widest uppercase text-black">Aura</span>
             </div>
-            <MagneticButton className="px-6 py-2 text-sm hidden md:flex" onClick={() => document.getElementById('contact').scrollIntoView()}>
+            <MagneticButton primary className="px-4 py-2 md:px-6 md:py-2 text-xs md:text-sm" onClick={() => document.getElementById('contact').scrollIntoView()}>
               Let's Talk
             </MagneticButton>
           </nav>
