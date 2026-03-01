@@ -582,14 +582,23 @@ export default function App() {
               />
               
               <div className="overflow-hidden mb-4">
-                <motion.p 
+                <motion.div 
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-black/60 font-semibold tracking-widest uppercase text-sm md:text-base mb-4"
+                  className="flex items-center gap-3 mb-4" // UPDATED: Flex container for Logo + Text
                 >
-                  Vivin M • @aura.edit_ae
-                </motion.p>
+                  {/* 👇 YOUR LOGO HERE (Make sure mylogo.png is in the public folder) */}
+                  <img 
+                    src="/mylogo.png" 
+                    alt="Logo" 
+                    className="w-10 h-10 object-cover rounded-full border border-black/10 shadow-sm"
+                  />
+                  
+                  <p className="text-black/60 font-semibold tracking-widest uppercase text-sm md:text-base">
+                    Vivin M • @aura.edit_ae
+                  </p>
+                </motion.div>
               </div>
 
               <div className="overflow-hidden py-2">
