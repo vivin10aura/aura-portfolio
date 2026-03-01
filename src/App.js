@@ -3,13 +3,58 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionV
 import { Play, ArrowUpRight, Instagram, Mail, ChevronRight, Zap, Briefcase, Award, Sparkles, Send, Check, Loader2, Wand2, Bot, Github } from 'lucide-react';
 import './App.css'; // This links your CSS file
 
+// --- 1. NEW COMPONENT: PREMIUM APPLE-STYLE PILL ---
+const ApplePill = () => {
+  const messages = [
+    "Crafted in 4K.",
+    "Focuse Speed , im Speed!.",
+    "Built with Aura."
+  ];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % messages.length);
+    }, 3000); // Transitions every 3 seconds
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    // Layout container: Aligns with the logo (start on desktop, center on mobile if needed)
+    <div className="flex justify-start w-full mb-8">
+      
+      {/* The Pill Itself: Minimal, Luxury, Soft Grey Glass */}
+      <div className="relative flex items-center justify-center px-6 h-[42px] md:h-[46px] bg-gray-50/80 backdrop-blur-md border border-black/5 rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.03)] overflow-hidden">
+        
+        {/* Subtle inner shine */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-white/60 to-transparent pointer-events-none" />
+
+        {/* Animated Text */}
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={index}
+            initial={{ y: 15, opacity: 0, filter: 'blur(3px)' }}
+            animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+            exit={{ y: -15, opacity: 0, filter: 'blur(3px)' }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} // The "Apple" Bezier Curve
+            className="text-[13px] md:text-[14px] font-medium text-black/70 tracking-wide whitespace-nowrap"
+          >
+            {messages[index]}
+          </motion.span>
+        </AnimatePresence>
+      
+      </div>
+    </div>
+  );
+};
+
 // --- CONFETTI SPARK EFFECT ---
 
-const AntigravitySpark = ({ delay = 0, duration = 6, colorIndex = 0 }) => {
+const AntigravitySpark = ({ delay = 0, duration = 6, colorIndex = 0, onComplete }) => {
   const randomX = Math.random() * 100;
   const randomRotation = Math.random() * 360;
-  const randomScale = Math.random() * 1 + 1; // Increased from 0.5 to 1
-  const randomDuration = duration + Math.random() * 3;
+  const randomScale = Math.random() * 1 + 1;
+  const randomDuration = duration + Math.random() * 6; // Increased from 3 to 6
 
   // Color palette: Red, Pink, Blue
   const colors = [
@@ -33,14 +78,16 @@ const AntigravitySpark = ({ delay = 0, duration = 6, colorIndex = 0 }) => {
         y: "-10vh",
         x: `${randomX + (Math.random() - 0.5) * 10}vw`,
         rotate: randomRotation + 720,
-        opacity: [0.75, 0.75, 0]
+        opacity: [0.75, 0.75, 0.75, 0] // Stay visible longer
       }}
       transition={{ 
         duration: randomDuration, 
         delay: delay, 
         ease: "easeOut"
       }}
+      onAnimationComplete={onComplete}
       className="fixed pointer-events-none"
+      style={{ willChange: 'transform' }}
     >
       <div className={`w-2 h-2 bg-gradient-to-br ${color.gradient} rounded-full shadow-lg`}
         style={{
@@ -56,26 +103,26 @@ const ConfettiSparks = React.memo(() => {
   const colorIndexRef = useRef(0);
 
   useEffect(() => {
-    // Generate initial sparks (increased from 20 to 35)
-    const initialSparks = Array.from({ length: 35 }, (_, i) => ({
+    // Generate initial sparks (increased for continuous effect)
+    const initialSparks = Array.from({ length: 50 }, (_, i) => ({
       id: i,
-      delay: i * 0.05,
+      delay: i * 0.02,
       colorIndex: i % 3,
     }));
     setSparks(initialSparks);
-    colorIndexRef.current = 35;
+    colorIndexRef.current = 50;
 
-    // Create new sparks continuously (faster interval)
+    // Create new sparks continuously (very fast to maintain looping effect)
     const interval = setInterval(() => {
       setSparks(prev => [
-        ...prev,
+        ...prev.slice(-50), // Keep only last 50 sparks
         {
           id: Date.now() + Math.random(),
           delay: 0,
           colorIndex: (colorIndexRef.current++) % 3,
         }
       ]);
-    }, 500); // Reduced from 800 to 500 for even more density
+    }, 300); // Very fast spawn for continuous effect
 
     return () => clearInterval(interval);
   }, []);
@@ -83,7 +130,12 @@ const ConfettiSparks = React.memo(() => {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       {sparks.map(spark => (
-        <AntigravitySpark key={spark.id} delay={spark.delay} duration={9} colorIndex={spark.colorIndex} />
+        <AntigravitySpark 
+          key={spark.id} 
+          delay={spark.delay} 
+          duration={12}
+          colorIndex={spark.colorIndex}
+        />
       ))}
     </div>
   );
@@ -581,14 +633,17 @@ export default function App() {
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[600px] md:h-[900px] bg-[radial-gradient(circle_at_center,rgba(230,224,255,0.35)_0%,transparent_70%)] rounded-full blur-[80px] pointer-events-none -z-10"
               />
               
+              {/* 🌟 NEW: THE PREMIUM APPLE PILL (Fills the top space) */}
+              <ApplePill />
+
               <div className="overflow-hidden mb-4">
                 <motion.div 
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center gap-3 mb-4" // UPDATED: Flex container for Logo + Text
+                  className="flex items-center gap-3 mb-4" 
                 >
-                  {/* 👇 YOUR LOGO HERE (Make sure mylogo.png is in the public folder) */}
+                  {/* 👇 YOUR LOGO */}
                   <img 
                     src="/mylogo.png" 
                     alt="Logo" 
