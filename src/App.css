@@ -14,7 +14,35 @@ body, html {
   color: #000000; /* Text is Black */
 }
 
-/* 2. SUBTLE GREY SPARKS (The "Clean" Dust) */
+/* 2. ANTIGRAVITY SPARK CONFETTI EFFECT */
+
+/* Spark Glow Background Enhancement */
+@keyframes sparkGlow {
+  0% {
+    box-shadow: 0 0 8px rgba(253, 224, 71, 0.6), 0 0 16px rgba(253, 224, 71, 0.3), 0 0 24px rgba(253, 224, 71, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(253, 224, 71, 0.8), 0 0 20px rgba(253, 224, 71, 0.5), 0 0 32px rgba(253, 224, 71, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(253, 224, 71, 0.6), 0 0 16px rgba(253, 224, 71, 0.3), 0 0 24px rgba(253, 224, 71, 0.1);
+  }
+}
+
+/* Subtle background glow enhancement for sparks */
+@keyframes sparkFieldGlow {
+  0% {
+    background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0) 0%, transparent 100%);
+  }
+  50% {
+    background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0.02) 0%, transparent 100%);
+  }
+  100% {
+    background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0) 0%, transparent 100%);
+  }
+}
+
+/* 3. SUBTLE GREY SPARKS (The "Clean" Dust) */
 /* These are now grey/silver so they show up gently on the white background */
 
 /* Layer 1: Smallest particles */

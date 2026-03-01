@@ -3,6 +3,94 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionV
 import { Play, ArrowUpRight, Instagram, Mail, ChevronRight, Zap, Briefcase, Award, Sparkles, Send, Check, Loader2, Wand2, Bot, Github } from 'lucide-react';
 import './App.css'; // This links your CSS file
 
+// --- CONFETTI SPARK EFFECT ---
+
+const AntigravitySpark = ({ delay = 0, duration = 6, colorIndex = 0 }) => {
+  const randomX = Math.random() * 100;
+  const randomRotation = Math.random() * 360;
+  const randomScale = Math.random() * 1 + 1; // Increased from 0.5 to 1
+  const randomDuration = duration + Math.random() * 3;
+
+  // Color palette: Red, Pink, Blue
+  const colors = [
+    { gradient: 'from-red-400 via-red-200 to-red-100', glow: 'rgba(248, 113, 113, 0.75)' }, // Red
+    { gradient: 'from-pink-400 via-pink-200 to-pink-100', glow: 'rgba(244, 114, 182, 0.75)' }, // Pink
+    { gradient: 'from-blue-400 via-blue-200 to-blue-100', glow: 'rgba(96, 165, 250, 0.75)' }, // Blue
+  ];
+
+  const color = colors[colorIndex % 3];
+
+  return (
+    <motion.div
+      initial={{ 
+        x: `${randomX}vw`, 
+        y: "100vh", 
+        rotate: randomRotation,
+        opacity: 0.75,
+        scale: randomScale 
+      }}
+      animate={{ 
+        y: "-10vh",
+        x: `${randomX + (Math.random() - 0.5) * 10}vw`,
+        rotate: randomRotation + 720,
+        opacity: [0.75, 0.75, 0]
+      }}
+      transition={{ 
+        duration: randomDuration, 
+        delay: delay, 
+        ease: "easeOut"
+      }}
+      className="fixed pointer-events-none"
+    >
+      <div className={`w-2 h-2 bg-gradient-to-br ${color.gradient} rounded-full shadow-lg`}
+        style={{
+          boxShadow: `0 0 12px ${color.glow}, 0 0 24px ${color.glow.replace('0.75', '0.4')}, 0 0 36px ${color.glow.replace('0.75', '0.2')}`
+        }}
+      />
+    </motion.div>
+  );
+};
+
+const ConfettiSparks = React.memo(() => {
+  const [sparks, setSparks] = useState([]);
+  const colorIndexRef = useRef(0);
+
+  useEffect(() => {
+    // Generate initial sparks (increased from 20 to 35)
+    const initialSparks = Array.from({ length: 35 }, (_, i) => ({
+      id: i,
+      delay: i * 0.05,
+      colorIndex: i % 3,
+    }));
+    setSparks(initialSparks);
+    colorIndexRef.current = 35;
+
+    // Create new sparks continuously (faster interval)
+    const interval = setInterval(() => {
+      setSparks(prev => [
+        ...prev,
+        {
+          id: Date.now() + Math.random(),
+          delay: 0,
+          colorIndex: (colorIndexRef.current++) % 3,
+        }
+      ]);
+    }, 500); // Reduced from 800 to 500 for even more density
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {sparks.map(spark => (
+        <AntigravitySpark key={spark.id} delay={spark.delay} duration={9} colorIndex={spark.colorIndex} />
+      ))}
+    </div>
+  );
+});
+
+ConfettiSparks.displayName = "ConfettiSparks";
+
 // --- COMPONENTS ---
 
 const AuraLogo = React.memo(({ className = "w-8 h-8" }) => (
@@ -452,6 +540,7 @@ export default function App() {
   return (
     <>
       <CustomCursor />
+      <ConfettiSparks />
       
       <AnimatePresence>
         {loading && <Loader onComplete={() => setLoading(false)} />}
