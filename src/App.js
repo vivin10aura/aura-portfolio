@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
-import { Play, ArrowUpRight, Instagram, Mail, ChevronRight, Zap, Briefcase, Award, Sparkles, Send, Check, Loader2, Wand2, Bot, Github } from 'lucide-react';
+import { Play, ArrowUpRight, Instagram, Mail, ChevronRight, Zap, Briefcase, Award, Sparkles, Send, Check, Loader2, Bot, Github } from 'lucide-react';
 import './App.css'; // This links your CSS file
 
 // --- 1. NEW COMPONENT: PREMIUM APPLE-STYLE PILL ---
@@ -382,115 +382,6 @@ const Loader = React.memo(({ onComplete }) => {
   );
 });
 
-// --- GEMINI API HELPER ---
-const callGeminiAPI = async (prompt, systemPrompt) => {
-  const apiKey = ""; // API key is provided by the execution environment
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-  
-  const payload = {
-    contents: [{ parts: [{ text: prompt }] }],
-    systemInstruction: { parts: [{ text: systemPrompt }] }
-  };
-
-  const delays = [1000, 2000, 4000, 8000, 16000];
-  
-  for (let i = 0; i < 5; i++) {
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      const result = await response.json();
-      return result.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
-    } catch (error) {
-      if (i === 4) throw error; // Re-throw on final failure
-      await new Promise(res => setTimeout(res, delays[i])); // Exponential backoff
-    }
-  }
-};
-
-// --- AI CONCEPT STUDIO COMPONENT ---
-const AIConceptStudio = React.memo(() => {
-  const [idea, setIdea] = useState("");
-  const [concept, setConcept] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleGenerate = async () => {
-    if (!idea.trim()) return;
-    setIsGenerating(true);
-    setError("");
-    setConcept("");
-
-    const systemPrompt = `You are an expert creative director and cinematic video editor assistant working for Vivin M. 
-    The user will give you a rough product or idea. You must generate a highly engaging, 3-part storyboard concept designed for maximum viewer retention (perfect for TikTok/Reels/Shorts in 4K cinematic style). 
-    Keep it extremely punchy and under 100 words. Format with bold headers: '1. The Hook:', '2. The Build-up:', '3. The CTA:'. Avoid emojis.`;
-
-    try {
-      const result = await callGeminiAPI(`My idea is: ${idea}`, systemPrompt);
-      setConcept(result);
-    } catch (err) {
-      setError("Oops! The AI needs a quick break. Try again in a moment.");
-    } finally {
-      setIsGenerating(false);
-    }
-  };
-
-  return (
-    <div className="relative rounded-[3rem] bg-white/40 backdrop-blur-[40px] p-10 md:p-16 border border-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden">
-      <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
-        <Bot className="w-40 h-40 text-black" />
-      </div>
-      
-      <div className="relative z-10 max-w-2xl">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-black/5 text-sm font-bold tracking-widest uppercase mb-6 shadow-sm">
-          <Sparkles className="w-4 h-4 text-indigo-500" /> AI Co-Creator
-        </div>
-        <h3 className="text-3xl md:text-5xl font-bold tracking-tighter mb-4 text-black">Brainstorm your next viral hit.</h3>
-        <p className="text-black/60 text-lg mb-8 font-light">Type a raw product or brand idea below, and my custom AI assistant will instantly draft a high-retention video concept for us to build together.</p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <input 
-            type="text" 
-            value={idea}
-            onChange={(e) => setIdea(e.target.value)}
-            placeholder="e.g., A sleek new coffee brand..." 
-            className="flex-1 bg-white/50 border border-black/10 rounded-2xl px-6 py-4 text-black focus:outline-none focus:border-black/30 focus:bg-white transition-all shadow-inner placeholder:text-black/40"
-            onKeyDown={(e) => e.key === 'Enter' && handleGenerate()}
-          />
-          <MagneticButton primary onClick={handleGenerate} className="py-4 px-8" disabled={isGenerating}>
-            {isGenerating ? <><Loader2 className="w-5 h-5 animate-spin" /> Thinking...</> : "✨ Generate Concept"}
-          </MagneticButton>
-        </div>
-
-        <AnimatePresence mode="wait">
-          {concept && (
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="p-6 rounded-2xl bg-white/60 border border-black/5 shadow-sm"
-            >
-              <div className="prose prose-sm md:prose-base prose-black max-w-none">
-                {concept.split('\n').map((line, i) => {
-                  if (line.includes('The Hook:')) return <p key={i}><strong className="text-indigo-600">The Hook:</strong> {line.replace(/.*The Hook:\s*/i, '')}</p>;
-                  if (line.includes('The Build-up:')) return <p key={i}><strong className="text-blue-600">The Build-up:</strong> {line.replace(/.*The Build-up:\s*/i, '')}</p>;
-                  if (line.includes('The CTA:')) return <p key={i}><strong className="text-purple-600">The CTA:</strong> {line.replace(/.*The CTA:\s*/i, '')}</p>;
-                  return line ? <p key={i} className="text-black/80">{line}</p> : null;
-                })}
-              </div>
-            </motion.div>
-          )}
-          {error && <p className="text-red-500 font-medium">{error}</p>}
-        </AnimatePresence>
-      </div>
-    </div>
-  );
-});
-
 // --- MAIN APPLICATION ---
 
 export default function App() {
@@ -501,28 +392,9 @@ export default function App() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isDraftingMessage, setIsDraftingMessage] = useState(false);
 
   const handleInputChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
-  };
-
-  const handleDraftMessage = async () => {
-    if (!formState.message.trim()) return;
-    setIsDraftingMessage(true);
-    
-    const systemPrompt = `You are an AI assistant helping a client write a professional, polite inquiry email to Vivin M (a professional video editor and AI student). 
-    The client has typed some rough notes. Turn these notes into a clean, concise, enthusiastic professional message (max 3 sentences) asking to collaborate or get a quote. 
-    DO NOT include subject lines, greetings like "Dear Vivin", or sign-offs like "Best regards, [Name]". Just write the core message body seamlessly.`;
-
-    try {
-      const drafted = await callGeminiAPI(`Rough notes to expand: ${formState.message}`, systemPrompt);
-      setFormState(prev => ({ ...prev, message: drafted }));
-    } catch (err) {
-      console.error("Failed to draft message", err);
-    } finally {
-      setIsDraftingMessage(false);
-    }
   };
 
   const handleSubmit = async (e) => {
@@ -942,11 +814,6 @@ export default function App() {
             </div>
           </section>
 
-          {/* AI Concept Studio Section */}
-          <section className="py-16 px-6 md:px-12 max-w-7xl mx-auto relative z-20">
-            <AIConceptStudio />
-          </section>
-
           {/* Contact Section */}
           <section id="contact" className="py-32 px-6 md:px-12 relative overflow-hidden bg-[#FFFFFF]">
              {/* Background glow */}
@@ -997,16 +864,6 @@ export default function App() {
                   <div className="relative group pt-4">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-xs font-bold text-black/50 uppercase tracking-widest">Project Details</span>
-                      <button 
-                        type="button" 
-                        onClick={handleDraftMessage}
-                        disabled={isDraftingMessage || !formState.message}
-                        className="text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors flex items-center gap-1 disabled:opacity-40 disabled:hover:text-indigo-600"
-                        title="Type a few keywords and click to auto-draft a professional message"
-                      >
-                        {isDraftingMessage ? <Loader2 className="w-3 h-3 animate-spin" /> : <Wand2 className="w-3 h-3" />}
-                        ✨ Auto-Draft with AI
-                      </button>
                     </div>
                     <textarea placeholder="Type some rough notes here..." name="message" required value={formState.message} onChange={handleInputChange} rows={3} className="w-full bg-transparent border-b border-black/10 pb-4 text-lg text-black focus:outline-none focus:border-black transition-colors placeholder:text-black/40 resize-none" />
                     <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-black group-focus-within:w-full transition-all duration-500" />
