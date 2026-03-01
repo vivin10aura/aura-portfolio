@@ -103,26 +103,26 @@ const ConfettiSparks = React.memo(() => {
   const colorIndexRef = useRef(0);
 
   useEffect(() => {
-    // Generate initial sparks (increased for continuous effect)
-    const initialSparks = Array.from({ length: 50 }, (_, i) => ({
+    // Generate initial sparks (reduced for better performance)
+    const initialSparks = Array.from({ length: 25 }, (_, i) => ({
       id: i,
-      delay: i * 0.02,
+      delay: i * 0.04,
       colorIndex: i % 3,
     }));
     setSparks(initialSparks);
-    colorIndexRef.current = 50;
+    colorIndexRef.current = 25;
 
-    // Create new sparks continuously (very fast to maintain looping effect)
+    // Create new sparks continuously (optimal speed for visual effect)
     const interval = setInterval(() => {
       setSparks(prev => [
-        ...prev.slice(-50), // Keep only last 50 sparks
+        ...prev.slice(-25), // Keep only last 25 sparks
         {
           id: Date.now() + Math.random(),
           delay: 0,
           colorIndex: (colorIndexRef.current++) % 3,
         }
       ]);
-    }, 300); // Very fast spawn for continuous effect
+    }, 800); // Optimized spawn interval
 
     return () => clearInterval(interval);
   }, []);
