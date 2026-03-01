@@ -645,7 +645,7 @@ export default function App() {
                     </div>
                     <h3 className="text-3xl font-bold mb-4 text-black">Granite Laser Engraving</h3>
                     <p className="text-black/60 text-lg leading-relaxed mb-8 font-light">
-                      Started during my school years as a part-time venture. Scaled operations to generate <span className="text-black font-semibold">₹6 Lakhs in revenue</span> over 2.5 years.
+                      Started during my school years as a part-time venture. Scaled operations to generate <span className="text-black font-semibold">₹6+ Lakhs in revenue</span> over 2.5 years.
                     </p>
                   </div>
                   <div style={{ transform: "translateZ(60px)" }} className="inline-flex items-center gap-2 text-black font-semibold">
@@ -724,25 +724,25 @@ export default function App() {
                   id: 1,
                   title: "Cinematic Reel 01",
                   category: "Motion Design • 4K",
-                  videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" 
+                  videoUrl: "/reel1.mp4" 
                 },
                 {
                   id: 2,
                   title: "Cinematic Reel 02",
                   category: "VFX • 4K",
-                  videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" 
+                  videoUrl: "/reel2.mp4" 
                 },
                 {
                   id: 3,
                   title: "Cinematic Reel 03",
                   category: "Color Grading • 4K",
-                  videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" 
+                  videoUrl: "/reel3.mp4"
                 },
                 {
                   id: 4,
                   title: "Cinematic Reel 04",
-                  category: "Commercial • 4K",
-                  videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" 
+                  category: "Content • 4K",
+                  videoUrl: "/reel4.mp4"
                 }
               ].map((item) => (
                 <motion.div
