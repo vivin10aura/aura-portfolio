@@ -158,10 +158,3 @@ body, html {
     background-position: -200% 50%; 
   }
 }
-
-/* Mobile responsive: Reduce space above BUILD DIFFERENT marquee */
-@media (max-width: 768px) {
-  .game-marquee-wrapper {
-    margin: 10px 0;
-  }
-}
