@@ -92,7 +92,7 @@ body, html {
   width: 100%;
   overflow: hidden;
   z-index: 1;
-  opacity: 0.08;
+  opacity: 0.4; /* Increased from 0.08 to make it visible */
   pointer-events: none;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   margin: 40px 0;
@@ -101,22 +101,22 @@ body, html {
 .game-marquee-track {
   display: flex;
   white-space: nowrap;
-  animation: marqueeLoop 15s linear infinite; /* Faster: reduced from 30s to 15s */
+  animation: marqueeLoop 8s linear infinite; /* Faster: reduced from 15s to 8s */
 }
 
 .game-text {
   font-family: 'Press Start 2P', cursive;
-  font-size: 3rem;
-  margin-right: 4rem;
+  font-size: 2rem;
+  margin-right: 5rem;
   color: transparent;
-  -webkit-text-stroke: 1.5px #000;
+  -webkit-text-stroke: 2px #000; /* Thicker stroke for visibility */
   text-transform: uppercase;
   flex-shrink: 0;
 }
 
 @keyframes marqueeLoop {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-100%); } /* Perfect seamless loop */
 }
 
 /* --- 🌟 UPDATED: PERFECT LOOP FLUID ANIMATION --- */
