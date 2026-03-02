@@ -3,6 +3,23 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionV
 import { Play, ArrowUpRight, Instagram, Mail, ChevronRight, Zap, Briefcase, Award, Sparkles, Send, Check, Loader2, Bot, Github } from 'lucide-react';
 import './App.css'; // This links your CSS file
 
+// --- 1. NEW: GAME STYLE MARQUEE COMPONENT ---
+const GameMarquee = () => {
+  return (
+    <div className="game-marquee-wrapper">
+      <div className="game-marquee-track">
+        {/* Repeating text for smooth loop */}
+        <span className="game-text">Build Different</span>
+        <span className="game-text">Build Different</span>
+        <span className="game-text">Build Different</span>
+        <span className="game-text">Build Different</span>
+        <span className="game-text">Build Different</span>
+        <span className="game-text">Build Different</span>
+      </div>
+    </div>
+  );
+};
+
 // --- 1. NEW COMPONENT: PREMIUM APPLE-STYLE PILL ---
 const ApplePill = () => {
   const messages = [
@@ -507,6 +524,9 @@ export default function App() {
               
               {/* 🌟 FLUID MESH ANIMATION Added Here */}
               <div className="fluid-mesh-gradient" />
+              
+              {/* 🌟 GAME MARQUEE - ADD THIS */}
+              <GameMarquee />
               
               {/* 🌟 PREMIUM APPLE PILL */}
               <ApplePill />
