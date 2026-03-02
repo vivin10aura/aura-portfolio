@@ -106,7 +106,7 @@ body, html {
   background-size: 200% 100%; 
   
   filter: blur(90px); 
-  opacity: 0.25; 
+  opacity: 0.45; 
   
   /* 6s is faster, linear ensures constant speed (no pausing) */
   animation: fluidFlow 6s linear infinite; 
