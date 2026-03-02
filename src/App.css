@@ -90,7 +90,7 @@ body, html {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;  /* Smaller size (was 65-70%) */
-  height: 60%; /* Smaller size */
+  height: 150%; /* Smaller size */
   z-index: -1;
   
   /* 4 Colors: Start and End must be identical for the loop */
@@ -105,8 +105,8 @@ body, html {
   /* Size must be 200% so we can slide exactly one full width */
   background-size: 200% 100%; 
   
-  filter: blur(80px); 
-  opacity: 0.45; 
+  filter: blur(90px); 
+  opacity: 0.25; 
   
   /* 6s is faster, linear ensures constant speed (no pausing) */
   animation: fluidFlow 6s linear infinite; 
