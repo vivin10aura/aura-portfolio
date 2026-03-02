@@ -20,12 +20,12 @@ const GameMarquee = () => {
   );
 };
 
-// --- 1. NEW COMPONENT: PREMIUM APPLE-STYLE PILL ---
+// --- 2. NEW COMPONENT: PREMIUM APPLE-STYLE PILL ---
 const ApplePill = () => {
   const messages = [
-    "Crafted in 4K.",
-    "Focuse Speed , im Speed!.",
-    "Built with Aura."
+    "Crafted in 4K",
+    "Focuse Speed , im Speed!",
+    "Built with Aura"
   ];
   const [index, setIndex] = useState(0);
 
@@ -41,7 +41,7 @@ const ApplePill = () => {
     <div className="flex justify-start w-full mb-8">
       
       {/* The Pill Itself: Minimal, Luxury, Soft Grey Glass */}
-      <div className="relative flex items-center justify-center px-6 h-[42px] md:h-[46px] bg-gray-50/80 backdrop-blur-md border border-black/5 rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.03)] overflow-hidden">
+      <div className="relative flex items-center justify-center px-6 h-[42px] md:h-[46px] bg-gray-80/80 backdrop-blur-md border border-black/5 rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.03)] overflow-hidden">
         
         {/* Subtle inner shine */}
         <div className="absolute inset-0 bg-gradient-to-tr from-white/60 to-transparent pointer-events-none" />
@@ -558,7 +558,7 @@ export default function App() {
                   transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                   className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[1.1] text-black"
                 >
-                  Crafting Visual<br/>Stories in 4K.
+                  Crafting Visual<br/>Stories in 4K
                 </motion.h1>
               </div>
 
@@ -609,7 +609,7 @@ export default function App() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
               {/* About */}
               <div>
-                <SectionHeading subtitle="The Mindset">Beyond Editing.</SectionHeading>
+                <SectionHeading subtitle="The Mindset">Beyond Editing</SectionHeading>
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -683,7 +683,7 @@ export default function App() {
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(223,244,255,0.6)_0%,transparent_70%)] rounded-full blur-[100px] pointer-events-none" />
              
             <div className="max-w-7xl mx-auto relative z-10">
-              <SectionHeading subtitle="Entrepreneurial Journey">Building Businesses.</SectionHeading>
+              <SectionHeading subtitle="Entrepreneurial Journey">Building Businesses</SectionHeading>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <TiltCard className="flex flex-col justify-between group">
@@ -722,7 +722,7 @@ export default function App() {
           {/* Experience Timeline */}
           <section className="py-32 px-6 md:px-12 bg-[#EDF1F7] border-y border-[#E4EBF5] relative">
             <div className="max-w-4xl mx-auto">
-              <SectionHeading subtitle="The Path">Evolution.</SectionHeading>
+              <SectionHeading subtitle="The Path">Evolution</SectionHeading>
               
               <div className="relative pl-8 md:pl-0">
                 {/* Vertical Line */}
@@ -731,7 +731,7 @@ export default function App() {
                 {[
                   { year: "Present", title: "Professional Video Editor", desc: "Crafting high-end 4K visual content for premium clients, combining motion design with cinematic storytelling.", align: "right", icon: <Play className="w-4 h-4 text-black" /> },
                   { year: "2025", title: "Biofloc Fish Farming", desc: "Launched second entrepreneurial venture, focusing on sustainable and tech-driven aquaculture.", align: "left", icon: <Briefcase className="w-4 h-4 text-black" /> },
-                  { year: "2023 - 2025", title: "Granite Laser Engraving", desc: "Scaled a part-time school business to ₹6L revenue, learning sales, operations, and scaling.", align: "right", icon: <Award className="w-4 h-4 text-black" /> },
+                  { year: "2023 - 2025", title: "Granite Laser Engraving", desc: "Scaled a part-time school business to ₹6L+ revenue, learning sales, operations, and scaling.", align: "right", icon: <Award className="w-4 h-4 text-black" /> },
                   { year: "The Beginning", title: "Creative Spark", desc: "Discovered the passion for video editing and business, laying the foundation for Aura.", align: "left", icon: <Sparkles className="w-4 h-4 text-black" /> }
                 ].map((item, index) => (
                   <motion.div 
@@ -764,7 +764,7 @@ export default function App() {
 
           {/* Portfolio Section */}
           <section id="portfolio" className="py-32 px-6 md:px-12 max-w-7xl mx-auto bg-transparent">
-            <SectionHeading subtitle="Selected Works">Visual Portfolio.</SectionHeading>
+            <SectionHeading subtitle="Selected Works">Visual Portfolio</SectionHeading>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
@@ -844,7 +844,7 @@ export default function App() {
 
             <div className="max-w-4xl mx-auto relative z-10 bg-white/60 border border-white/40 backdrop-blur-[20px] rounded-[3rem] p-10 md:p-20 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
               <div className="text-center mb-16">
-                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-black">Let's Create<br/>Something Epic.</h2>
+                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-black">Let's Create<br/>Something Epic</h2>
                 <p className="text-xl text-black/60 font-light">Available for freelance opportunities and collaborations.</p>
               </div>
 
