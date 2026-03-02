@@ -101,7 +101,7 @@ body, html {
 .game-marquee-track {
   display: flex;
   white-space: nowrap;
-  animation: marqueeLoop 30s linear infinite;
+  animation: marqueeLoop 15s linear infinite; /* Faster: reduced from 30s to 15s */
 }
 
 .game-text {
