@@ -1,4 +1,4 @@
-/* App.css - The Original "Clean White" Theme */
+/* App.css - Clean White Theme */
 
 /* 1. Pure White Background */
 body, html {
@@ -7,45 +7,27 @@ body, html {
   width: 100%;
   min-height: 100vh;
   background-color: #ffffff;
-  /* Very subtle gradient to stop it from looking flat */
   background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #f7f7f7 100%);
   overflow-x: hidden;
   font-family: 'Inter', -apple-system, sans-serif;
-  color: #000000; /* Text is Black */
+  color: #000000;
 }
 
 /* 2. ANTIGRAVITY SPARK CONFETTI EFFECT */
 
-/* Spark Glow Background Enhancement */
 @keyframes sparkGlow {
-  0% {
-    box-shadow: 0 0 8px rgba(253, 224, 71, 0.6), 0 0 16px rgba(253, 224, 71, 0.3), 0 0 24px rgba(253, 224, 71, 0.1);
-  }
-  50% {
-    box-shadow: 0 0 12px rgba(253, 224, 71, 0.8), 0 0 20px rgba(253, 224, 71, 0.5), 0 0 32px rgba(253, 224, 71, 0.2);
-  }
-  100% {
-    box-shadow: 0 0 8px rgba(253, 224, 71, 0.6), 0 0 16px rgba(253, 224, 71, 0.3), 0 0 24px rgba(253, 224, 71, 0.1);
-  }
+  0% { box-shadow: 0 0 8px rgba(253, 224, 71, 0.6); }
+  50% { box-shadow: 0 0 12px rgba(253, 224, 71, 0.8); }
+  100% { box-shadow: 0 0 8px rgba(253, 224, 71, 0.6); }
 }
 
-/* Subtle background glow enhancement for sparks */
 @keyframes sparkFieldGlow {
-  0% {
-    background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0) 0%, transparent 100%);
-  }
-  50% {
-    background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0.02) 0%, transparent 100%);
-  }
-  100% {
-    background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0) 0%, transparent 100%);
-  }
+  0% { background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0) 0%, transparent 100%); }
+  50% { background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0.02) 0%, transparent 100%); }
+  100% { background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0) 0%, transparent 100%); }
 }
 
-/* 3. SUBTLE GREY SPARKS (The "Clean" Dust) */
-/* These are now grey/silver so they show up gently on the white background */
-
-/* Layer 1: Smallest particles */
+/* 3. SUBTLE GREY SPARKS */
 #particles1 {
   position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   box-shadow: 10vw 20vh rgba(0, 0, 0, 0.1), 20vw 50vh rgba(0, 0, 0, 0.1), 
@@ -60,7 +42,6 @@ body, html {
               70vw 90vh rgba(0, 0, 0, 0.1), 90vw 10vh rgba(0, 0, 0, 0.1);
 }
 
-/* Layer 2: Medium particles */
 #particles2 {
   position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   box-shadow: 15vw 15vh rgba(0, 0, 0, 0.15), 35vw 45vh rgba(0, 0, 0, 0.15), 
@@ -75,7 +56,6 @@ body, html {
               75vw 85vh rgba(0, 0, 0, 0.15);
 }
 
-/* Layer 3: Larger particles */
 #particles3 {
   position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   box-shadow: 25vw 25vh rgba(0, 0, 0, 0.05), 55vw 55vh rgba(0, 0, 0, 0.05);
@@ -88,13 +68,11 @@ body, html {
   box-shadow: 25vw 25vh rgba(0, 0, 0, 0.05), 55vw 55vh rgba(0, 0, 0, 0.05);
 }
 
-/* Animation */
 @keyframes moveParticles {
   from { transform: translateY(0px); }
   to { transform: translateY(-100vh); }
 }
 
-/* Utilities */
 .bg-grain {
   position: fixed; inset: 0; z-index: 0; opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
@@ -104,3 +82,43 @@ body, html {
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+/* --- 🌟 UPDATED: PERFECT LOOP FLUID ANIMATION --- */
+.fluid-mesh-gradient {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;  /* Smaller size (was 65-70%) */
+  height: 60%; /* Smaller size */
+  z-index: -1;
+  
+  /* 4 Colors: Start and End must be identical for the loop */
+  background: linear-gradient(
+    90deg, 
+    rgba(239, 68, 68, 0.85),  /* 1. Red */
+    rgba(31, 188, 255, 0.91), /* 2. Blue */
+    rgba(236, 72, 153, 0.85), /* 3. Pink */
+    rgba(239, 68, 68, 0.85)   /* 4. Red (Must match start) */
+  );
+  
+  /* Size must be 200% so we can slide exactly one full width */
+  background-size: 200% 100%; 
+  
+  filter: blur(80px); 
+  opacity: 0.45; 
+  
+  /* 6s is faster, linear ensures constant speed (no pausing) */
+  animation: fluidFlow 6s linear infinite; 
+  will-change: background-position;
+}
+
+@keyframes fluidFlow {
+  0% { 
+    background-position: 0% 50%; 
+  }
+  100% { 
+    /* Move exactly one full background width to the left */
+    background-position: -200% 50%; 
+  }
+}

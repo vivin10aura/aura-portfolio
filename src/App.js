@@ -505,7 +505,10 @@ export default function App() {
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[600px] md:h-[900px] bg-[radial-gradient(circle_at_center,rgba(230,224,255,0.35)_0%,transparent_70%)] rounded-full blur-[80px] pointer-events-none -z-10"
               />
               
-              {/* 🌟 NEW: THE PREMIUM APPLE PILL (Fills the top space) */}
+              {/* 🌟 FLUID MESH ANIMATION Added Here */}
+              <div className="fluid-mesh-gradient" />
+              
+              {/* 🌟 PREMIUM APPLE PILL */}
               <ApplePill />
 
               <div className="overflow-hidden mb-4">
@@ -883,7 +886,6 @@ export default function App() {
             </div>
           </section>
 
-          {/* Footer */}
           <footer className="py-8 px-6 text-center border-t border-[#E4EBF5] flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto text-sm text-black/50 font-medium bg-[#F7F9FC]">
             <p>© {new Date().getFullYear()} Aura by Vivin M. All rights reserved.</p>
             <div className="flex items-center gap-2 mt-4 md:mt-0">
