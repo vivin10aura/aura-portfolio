@@ -8,7 +8,7 @@ body, html {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   background-color: #ffffff;
   background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #f7f7f7 100%);
   overflow-x: hidden;
@@ -117,6 +117,15 @@ body, html {
 @keyframes marqueeLoop {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); } /* Perfect seamless loop */
+}
+
+@keyframes borderBeamAnimate {
+  0% {
+    stroke-dashoffset: 400;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
 /* --- 🌟 UPDATED: PERFECT LOOP FLUID ANIMATION --- */
