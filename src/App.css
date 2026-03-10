@@ -9,7 +9,7 @@ html {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 90vh;
+  min-height: 100vh;
   background-color: #ffffff;
   background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #f7f7f7 100%);
   overflow-x: hidden;
@@ -253,9 +253,4 @@ html {
   .game-marquee-wrapper {
     margin: 10px 0;
   }
-}
-
-.pt-20 {
-  padding-top: 0rem;
-  /* 80px */
 }
