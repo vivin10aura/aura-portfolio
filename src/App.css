@@ -4,7 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 /* 2. Pure White Background */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -19,72 +20,132 @@ body, html {
 /* 3. ANTIGRAVITY SPARK CONFETTI EFFECT */
 
 @keyframes sparkGlow {
-  0% { box-shadow: 0 0 8px rgba(253, 224, 71, 0.6); }
-  50% { box-shadow: 0 0 12px rgba(253, 224, 71, 0.8); }
-  100% { box-shadow: 0 0 8px rgba(253, 224, 71, 0.6); }
+  0% {
+    box-shadow: 0 0 8px rgba(253, 224, 71, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 12px rgba(253, 224, 71, 0.8);
+  }
+
+  100% {
+    box-shadow: 0 0 8px rgba(253, 224, 71, 0.6);
+  }
 }
 
 @keyframes sparkFieldGlow {
-  0% { background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0) 0%, transparent 100%); }
-  50% { background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0.02) 0%, transparent 100%); }
-  100% { background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0) 0%, transparent 100%); }
+  0% {
+    background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0) 0%, transparent 100%);
+  }
+
+  50% {
+    background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0.02) 0%, transparent 100%);
+  }
+
+  100% {
+    background: radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0) 0%, transparent 100%);
+  }
 }
 
 /* 4. SUBTLE GREY SPARKS */
 #particles1 {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  box-shadow: 10vw 20vh rgba(0, 0, 0, 0.1), 20vw 50vh rgba(0, 0, 0, 0.1), 
-              70vw 90vh rgba(0, 0, 0, 0.1), 90vw 10vh rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  box-shadow: 10vw 20vh rgba(0, 0, 0, 0.1), 20vw 50vh rgba(0, 0, 0, 0.1),
+    70vw 90vh rgba(0, 0, 0, 0.1), 90vw 10vh rgba(0, 0, 0, 0.1);
   animation: moveParticles 60s linear infinite;
-  z-index: 0; 
+  z-index: 0;
 }
+
 #particles1:after {
-  content: " "; position: absolute; top: 100vh; width: 2px; height: 2px;
+  content: " ";
+  position: absolute;
+  top: 100vh;
+  width: 2px;
+  height: 2px;
   background: rgba(0, 0, 0, 0.1);
-  box-shadow: 10vw 20vh rgba(0, 0, 0, 0.1), 20vw 50vh rgba(0, 0, 0, 0.1), 
-              70vw 90vh rgba(0, 0, 0, 0.1), 90vw 10vh rgba(0, 0, 0, 0.1);
+  box-shadow: 10vw 20vh rgba(0, 0, 0, 0.1), 20vw 50vh rgba(0, 0, 0, 0.1),
+    70vw 90vh rgba(0, 0, 0, 0.1), 90vw 10vh rgba(0, 0, 0, 0.1);
 }
 
 #particles2 {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  box-shadow: 15vw 15vh rgba(0, 0, 0, 0.15), 35vw 45vh rgba(0, 0, 0, 0.15), 
-              75vw 85vh rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  box-shadow: 15vw 15vh rgba(0, 0, 0, 0.15), 35vw 45vh rgba(0, 0, 0, 0.15),
+    75vw 85vh rgba(0, 0, 0, 0.15);
   animation: moveParticles 100s linear infinite;
   z-index: 0;
 }
+
 #particles2:after {
-  content: " "; position: absolute; top: 100vh; width: 3px; height: 3px;
+  content: " ";
+  position: absolute;
+  top: 100vh;
+  width: 3px;
+  height: 3px;
   background: rgba(0, 0, 0, 0.15);
-  box-shadow: 15vw 15vh rgba(0, 0, 0, 0.15), 35vw 45vh rgba(0, 0, 0, 0.15), 
-              75vw 85vh rgba(0, 0, 0, 0.15);
+  box-shadow: 15vw 15vh rgba(0, 0, 0, 0.15), 35vw 45vh rgba(0, 0, 0, 0.15),
+    75vw 85vh rgba(0, 0, 0, 0.15);
 }
 
 #particles3 {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   box-shadow: 25vw 25vh rgba(0, 0, 0, 0.05), 55vw 55vh rgba(0, 0, 0, 0.05);
   animation: moveParticles 150s linear infinite;
   z-index: 0;
 }
+
 #particles3:after {
-  content: " "; position: absolute; top: 100vh; width: 4px; height: 4px;
+  content: " ";
+  position: absolute;
+  top: 100vh;
+  width: 4px;
+  height: 4px;
   background: rgba(0, 0, 0, 0.05);
   box-shadow: 25vw 25vh rgba(0, 0, 0, 0.05), 55vw 55vh rgba(0, 0, 0, 0.05);
 }
 
 @keyframes moveParticles {
-  from { transform: translateY(0px); }
-  to { transform: translateY(-100vh); }
+  from {
+    transform: translateY(0px);
+  }
+
+  to {
+    transform: translateY(-100vh);
+  }
 }
 
 .bg-grain {
-  position: fixed; inset: 0; z-index: 0; opacity: 0.03;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   pointer-events: none;
 }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
 
 /* --- 🌟 GAME STYLE MARQUEE (New) --- */
 .game-marquee-wrapper {
@@ -92,7 +153,8 @@ body, html {
   width: 100%;
   overflow: hidden;
   z-index: 1;
-  opacity: 0.4; /* Increased from 0.08 to make it visible */
+  opacity: 0.4;
+  /* Increased from 0.08 to make it visible */
   pointer-events: none;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   margin: 40px 0;
@@ -101,7 +163,8 @@ body, html {
 .game-marquee-track {
   display: flex;
   white-space: nowrap;
-  animation: marqueeLoop 8s linear infinite; /* Faster: reduced from 15s to 8s */
+  animation: marqueeLoop 8s linear infinite;
+  /* Faster: reduced from 15s to 8s */
 }
 
 .game-text {
@@ -109,20 +172,29 @@ body, html {
   font-size: 2rem;
   margin-right: 5rem;
   color: transparent;
-  -webkit-text-stroke: 2px #000; /* Thicker stroke for visibility */
+  -webkit-text-stroke: 2px #000;
+  /* Thicker stroke for visibility */
   text-transform: uppercase;
   flex-shrink: 0;
 }
 
 @keyframes marqueeLoop {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); } /* Perfect seamless loop */
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+
+  /* Perfect seamless loop */
 }
 
 @keyframes borderBeamAnimate {
   0% {
     stroke-dashoffset: 400;
   }
+
   100% {
     stroke-dashoffset: 0;
   }
@@ -134,37 +206,45 @@ body, html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;  /* Smaller size (was 100%) */
-  height: 60%; /* Smaller size (was 150%) */
+  width: 60%;
+  /* Smaller size (was 100%) */
+  height: 60%;
+  /* Smaller size (was 150%) */
   z-index: -1;
-  
+
   /* 4 Colors: Start and End must be identical for the loop */
-  background: linear-gradient(
-    90deg, 
-    rgba(239, 68, 68, 0.85),  /* 1. Red */
-    rgba(31, 188, 255, 0.91), /* 2. Blue */
-    rgba(236, 72, 153, 0.85), /* 3. Pink */
-    rgba(239, 68, 68, 0.85)   /* 4. Red (Must match start) */
-  );
-  
+  background: linear-gradient(90deg,
+      rgba(239, 68, 68, 0.85),
+      /* 1. Red */
+      rgba(31, 188, 255, 0.91),
+      /* 2. Blue */
+      rgba(236, 72, 153, 0.85),
+      /* 3. Pink */
+      rgba(239, 68, 68, 0.85)
+      /* 4. Red (Must match start) */
+    );
+
   /* Size must be 200% so we can slide exactly one full width */
-  background-size: 200% 100%; 
-  
-  filter: blur(80px); /* Sharper blur */
-  opacity: 0.85; /* Higher opacity */
-  
+  background-size: 200% 100%;
+
+  filter: blur(80px);
+  /* Sharper blur */
+  opacity: 0.85;
+  /* Higher opacity */
+
   /* 4s is faster */
-  animation: fluidFlow 4s linear infinite; 
+  animation: fluidFlow 4s linear infinite;
   will-change: background-position;
 }
 
 @keyframes fluidFlow {
-  0% { 
-    background-position: 0% 50%; 
+  0% {
+    background-position: 0% 50%;
   }
-  100% { 
+
+  100% {
     /* Move exactly one full background width to the left */
-    background-position: -200% 50%; 
+    background-position: -200% 50%;
   }
 }
 
@@ -173,4 +253,9 @@ body, html {
   .game-marquee-wrapper {
     margin: 10px 0;
   }
+}
+
+.pt-20 {
+  padding-top: 0rem;
+  /* 80px */
 }
