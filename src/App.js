@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
-import { Play, ArrowUpRight, Instagram, Mail, ChevronRight, Zap, Briefcase, Award, Sparkles, Send, Check, Loader2, Bot, Github } from 'lucide-react';
+import { Play, ArrowUpRight, Instagram, Mail, ChevronRight, Zap, Briefcase, Award, Sparkles, Send, Check, Loader2, Bot, Github, Youtube, MessageSquare } from 'lucide-react';
+import { SiDiscord as Discord } from '@icons-pack/react-simple-icons';
 import './App.css'; // This links your CSS file
 
 // --- 1. NEW: GAME STYLE MARQUEE COMPONENT ---
@@ -39,10 +40,10 @@ const ApplePill = () => {
   return (
     // Layout container: Aligns with the logo (start on desktop, center on mobile if needed)
     <div className="flex justify-start w-full mb-8">
-      
+
       {/* The Pill Itself: Minimal, Luxury, Soft Grey Glass */}
       <div className="relative flex items-center justify-center px-6 h-[42px] md:h-[46px] bg-gray-80/80 backdrop-blur-md border border-black/5 rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.03)] overflow-hidden">
-        
+
         {/* Subtle inner shine */}
         <div className="absolute inset-0 bg-gradient-to-tr from-white/60 to-transparent pointer-events-none" />
 
@@ -59,7 +60,7 @@ const ApplePill = () => {
             {messages[index]}
           </motion.span>
         </AnimatePresence>
-      
+
       </div>
     </div>
   );
@@ -84,22 +85,22 @@ const AntigravitySpark = ({ delay = 0, duration = 6, colorIndex = 0, onComplete 
 
   return (
     <motion.div
-      initial={{ 
-        x: `${randomX}vw`, 
-        y: "100vh", 
+      initial={{
+        x: `${randomX}vw`,
+        y: "100vh",
         rotate: randomRotation,
         opacity: 0.75,
-        scale: randomScale 
+        scale: randomScale
       }}
-      animate={{ 
+      animate={{
         y: "-10vh",
         x: `${randomX + (Math.random() - 0.5) * 10}vw`,
         rotate: randomRotation + 720,
         opacity: [0.75, 0.75, 0.75, 0] // Stay visible longer
       }}
-      transition={{ 
-        duration: randomDuration, 
-        delay: delay, 
+      transition={{
+        duration: randomDuration,
+        delay: delay,
         ease: "easeOut"
       }}
       onAnimationComplete={onComplete}
@@ -147,9 +148,9 @@ const ConfettiSparks = React.memo(() => {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       {sparks.map(spark => (
-        <AntigravitySpark 
-          key={spark.id} 
-          delay={spark.delay} 
+        <AntigravitySpark
+          key={spark.id}
+          delay={spark.delay}
           duration={12}
           colorIndex={spark.colorIndex}
         />
@@ -164,18 +165,18 @@ ConfettiSparks.displayName = "ConfettiSparks";
 
 const AuraLogo = React.memo(({ className = "w-8 h-8" }) => (
   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <motion.path 
-      d="M50 5 L95 80 L5 80 Z" 
-      stroke="#000000" 
-      strokeWidth="4" 
-      strokeLinecap="round" 
+    <motion.path
+      d="M50 5 L95 80 L5 80 Z"
+      stroke="#000000"
+      strokeWidth="4"
+      strokeLinecap="round"
       strokeLinejoin="round"
       initial={{ pathLength: 0 }}
       animate={{ pathLength: 1 }}
       transition={{ duration: 2, ease: "easeInOut" }}
     />
-    <motion.path 
-      d="M50 30 L75 70 L25 70 Z" 
+    <motion.path
+      d="M50 30 L75 70 L25 70 Z"
       fill="#000000"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 0.1, scale: 1 }}
@@ -233,8 +234,8 @@ const CustomCursor = React.memo(() => {
       />
       <motion.div
         className="custom-cursor fixed top-0 left-0 w-8 h-8 border border-black/30 rounded-full pointer-events-none z-[99]"
-        style={{ 
-          x: ringXSpring, 
+        style={{
+          x: ringXSpring,
           y: ringYSpring,
           scale: isHovering ? 1.5 : 1,
           backgroundColor: isHovering ? 'rgba(0,0,0,0.05)' : 'transparent',
@@ -272,11 +273,10 @@ const MagneticButton = React.memo(({ children, className, onClick, primary = fal
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className={`relative overflow-hidden rounded-full group interactive transition-shadow duration-300 ${
-        primary 
-          ? 'bg-black text-white font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_25px_rgba(0,0,0,0.25)]' 
-          : 'bg-white/60 border border-white/40 text-black backdrop-blur-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:shadow-md hover:bg-white/80'
-      } ${className}`}
+      className={`relative overflow-hidden rounded-full group interactive transition-shadow duration-300 ${primary
+        ? 'bg-black text-white font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_25px_rgba(0,0,0,0.25)]'
+        : 'bg-white/60 border border-white/40 text-black backdrop-blur-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:shadow-md hover:bg-white/80'
+        } ${className}`}
     >
       <span className="relative z-10 flex items-center justify-center gap-2">
         {children}
@@ -319,9 +319,9 @@ const TiltCard = React.memo(({ children, className }) => {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ 
-        rotateX, 
-        rotateY, 
+      style={{
+        rotateX,
+        rotateY,
         transformStyle: "preserve-3d",
         boxShadow: "0 20px 50px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(255,255,255,0.5), inset 0 20px 40px rgba(255,255,255,0.6)"
       }}
@@ -330,7 +330,7 @@ const TiltCard = React.memo(({ children, className }) => {
       <div style={{ transform: "translateZ(40px)", transformStyle: "preserve-3d" }} className="w-full h-full">
         {children}
       </div>
-      <motion.div 
+      <motion.div
         className="absolute inset-0 rounded-[24px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
           background: useTransform(
@@ -344,7 +344,7 @@ const TiltCard = React.memo(({ children, className }) => {
 });
 
 const SectionHeading = React.memo(({ children, subtitle }) => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
@@ -378,7 +378,7 @@ const Loader = React.memo(({ onComplete }) => {
       >
         <AuraLogo className="w-20 h-20 mb-6" />
         <div className="overflow-hidden">
-          <motion.h1 
+          <motion.h1
             initial={{ y: 40 }}
             animate={{ y: 0 }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -388,7 +388,7 @@ const Loader = React.memo(({ onComplete }) => {
           </motion.h1>
         </div>
       </motion.div>
-      <motion.div 
+      <motion.div
         initial={{ width: 0 }}
         animate={{ width: "200px" }}
         transition={{ delay: 1, duration: 1.5, ease: "easeInOut" }}
@@ -404,7 +404,7 @@ const Loader = React.memo(({ onComplete }) => {
 export default function App() {
   const [loading, setLoading] = useState(true);
   const { scrollYProgress } = useScroll();
-  
+
   // Form State
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -417,10 +417,10 @@ export default function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
-      const access_key = "1f7134f5-8a51-4231-a3da-5cbcca9bb5df"; 
-      
+      const access_key = "1f7134f5-8a51-4231-a3da-5cbcca9bb5df";
+
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -437,12 +437,12 @@ export default function App() {
       });
 
       const result = await response.json();
-      
+
       if (result.success) {
         setIsSubmitting(false);
         setIsSubmitted(true);
         setFormState({ name: '', email: '', message: '' }); // Clear form
-        
+
         // Reset success message after 5 seconds
         setTimeout(() => setIsSubmitted(false), 5000);
       } else {
@@ -458,7 +458,7 @@ export default function App() {
   // SEO & Meta Tags Optimization Effect
   useEffect(() => {
     document.title = "Aura – Visual Experience by Vivin M";
-    
+
     const setMeta = (name, content, isProperty = false) => {
       const attr = isProperty ? 'property' : 'name';
       let meta = document.querySelector(`meta[${attr}="${name}"]`);
@@ -482,7 +482,7 @@ export default function App() {
     <>
       <CustomCursor />
       <ConfettiSparks />
-      
+
       <AnimatePresence>
         {loading && <Loader onComplete={() => setLoading(false)} />}
       </AnimatePresence>
@@ -495,7 +495,7 @@ export default function App() {
       </div>
 
       {!loading && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, filter: "blur(20px)" }}
           animate={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.2, ease: "easeOut" }}
@@ -521,30 +521,30 @@ export default function App() {
                 transition={{ duration: 1.5, ease: "easeOut" }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[600px] md:h-[900px] bg-[radial-gradient(circle_at_center,rgba(230,224,255,0.35)_0%,transparent_70%)] rounded-full blur-[80px] pointer-events-none -z-10"
               />
-              
+
               {/* 🌟 FLUID MESH ANIMATION Added Here */}
               <div className="fluid-mesh-gradient" />
-              
+
               {/* 🌟 GAME MARQUEE - ADD THIS */}
               <GameMarquee />
-              
+
               {/* 🌟 PREMIUM APPLE PILL */}
               <ApplePill />
 
               <div className="overflow-hidden mb-4">
-                <motion.div 
+                <motion.div
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center gap-3 mb-4" 
+                  className="flex items-center gap-3 mb-4"
                 >
                   {/* 👇 YOUR LOGO */}
-                  <img 
-                    src="/mylogo.png" 
-                    alt="Logo" 
+                  <img
+                    src="/mylogo.png"
+                    alt="Logo"
                     className="w-10 h-10 object-cover rounded-full border border-black/10 shadow-sm"
                   />
-                  
+
                   <p className="text-black/60 font-semibold tracking-widest uppercase text-sm md:text-base">
                     Vivin M • @aura.edit_ae
                   </p>
@@ -552,17 +552,17 @@ export default function App() {
               </div>
 
               <div className="overflow-hidden py-2">
-                <motion.h1 
+                <motion.h1
                   initial={{ y: "100%", rotate: 2 }}
                   animate={{ y: 0, rotate: 0 }}
                   transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                   className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[1.1] text-black"
                 >
-                  Crafting Visual<br/>Stories in 4K
+                  Crafting Visual<br />Stories in 4K
                 </motion.h1>
               </div>
 
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
@@ -571,7 +571,7 @@ export default function App() {
                 <span className="text-black font-semibold">Editor.</span> Creator. Entrepreneur. <span className="text-black italic">AI Student.</span>
               </motion.p>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
@@ -585,9 +585,9 @@ export default function App() {
                 </MagneticButton>
               </motion.div>
             </div>
-            
+
             {/* Scroll Indicator */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
@@ -595,7 +595,7 @@ export default function App() {
             >
               <span className="text-xs tracking-widest text-black/40 uppercase font-semibold">Scroll</span>
               <div className="w-[1px] h-12 bg-black/10 relative overflow-hidden">
-                <motion.div 
+                <motion.div
                   animate={{ y: ["-100%", "100%"] }}
                   transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
                   className="absolute top-0 left-0 w-full h-1/2 bg-black"
@@ -610,7 +610,7 @@ export default function App() {
               {/* About */}
               <div>
                 <SectionHeading subtitle="The Mindset">Beyond Editing</SectionHeading>
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -646,7 +646,7 @@ export default function App() {
                     { name: '4K Editing & Color Grading', value: 95 },
                     { name: 'Adobe Photoshop', value: 85 }
                   ].map((skill, index) => (
-                    <motion.div 
+                    <motion.div
                       key={skill.name}
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -659,7 +659,7 @@ export default function App() {
                         <span className="text-black/50 font-medium">{skill.value}%</span>
                       </div>
                       <div className="h-2 w-full bg-black/5 rounded-full overflow-hidden relative shadow-inner">
-                        <motion.div 
+                        <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.value}%` }}
                           viewport={{ once: true }}
@@ -679,12 +679,12 @@ export default function App() {
 
           {/* Business & Entrepreneurship Section */}
           <section className="py-32 px-6 md:px-12 relative bg-[#F7F9FC] overflow-hidden">
-             {/* Background glow to enhance the liquid glass effect */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(223,244,255,0.6)_0%,transparent_70%)] rounded-full blur-[100px] pointer-events-none" />
-             
+            {/* Background glow to enhance the liquid glass effect */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(223,244,255,0.6)_0%,transparent_70%)] rounded-full blur-[100px] pointer-events-none" />
+
             <div className="max-w-7xl mx-auto relative z-10">
               <SectionHeading subtitle="Entrepreneurial Journey">Building Businesses</SectionHeading>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <TiltCard className="flex flex-col justify-between group">
                   <div style={{ transform: "translateZ(40px)" }}>
@@ -723,7 +723,7 @@ export default function App() {
           <section className="py-32 px-6 md:px-12 bg-[#EDF1F7] border-y border-[#E4EBF5] relative">
             <div className="max-w-4xl mx-auto">
               <SectionHeading subtitle="The Path">Evolution</SectionHeading>
-              
+
               <div className="relative pl-8 md:pl-0">
                 {/* Vertical Line */}
                 <div className="absolute left-[39px] md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-black/20 via-black/10 to-transparent -translate-x-1/2" />
@@ -734,7 +734,7 @@ export default function App() {
                   { year: "2023 - 2025", title: "Granite Laser Engraving", desc: "Scaled a part-time school business to ₹6L+ revenue, learning sales, operations, and scaling.", align: "right", icon: <Award className="w-4 h-4 text-black" /> },
                   { year: "The Beginning", title: "Creative Spark", desc: "Discovered the passion for video editing and business, laying the foundation for Aura.", align: "left", icon: <Sparkles className="w-4 h-4 text-black" /> }
                 ].map((item, index) => (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -746,14 +746,14 @@ export default function App() {
                     <div className="absolute left-[-40px] md:left-1/2 w-10 h-10 rounded-full bg-white border-2 border-black flex items-center justify-center -translate-x-1/2 z-10 shadow-[0_4px_15px_rgba(0,0,0,0.08)]">
                       {item.icon}
                     </div>
-                    
+
                     {/* Content */}
                     <div className={`w-full md:w-[45%] ${item.align === 'right' ? 'md:pl-12 text-left' : 'md:pr-12 md:text-right'} pl-6 md:pl-0`}>
                       <span className="text-black/60 font-mono text-sm tracking-widest font-semibold">{item.year}</span>
                       <h4 className="text-2xl font-bold text-black mt-2 mb-3">{item.title}</h4>
                       <p className="text-black/60 leading-relaxed font-light">{item.desc}</p>
                     </div>
-                    
+
                     {/* Empty spacer for grid alignment on desktop */}
                     <div className="hidden md:block w-[45%]" />
                   </motion.div>
@@ -765,20 +765,20 @@ export default function App() {
           {/* Portfolio Section */}
           <section id="portfolio" className="py-32 px-6 md:px-12 max-w-7xl mx-auto bg-transparent">
             <SectionHeading subtitle="Selected Works">Visual Portfolio</SectionHeading>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
                   id: 1,
                   title: "Cinematic Reel 01",
                   category: "Motion Design • 4K",
-                  videoUrl: "/reel1.mp4" 
+                  videoUrl: "/reel1.mp4"
                 },
                 {
                   id: 2,
                   title: "Cinematic Reel 02",
                   category: "VFX • 4K",
-                  videoUrl: "/reel2.mp4" 
+                  videoUrl: "/reel2.mp4"
                 },
                 {
                   id: 3,
@@ -810,10 +810,10 @@ export default function App() {
                     playsInline
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  
+
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-white/40 group-hover:bg-white/10 transition-colors duration-500" />
-                  
+
                   {/* Content */}
                   <div className="absolute inset-0 p-8 flex flex-col justify-between">
                     <div className="flex justify-end">
@@ -829,7 +829,7 @@ export default function App() {
                 </motion.div>
               ))}
             </div>
-            
+
             <div className="mt-16 flex justify-center">
               <MagneticButton className="px-8 py-4">
                 View Full Archive <ArrowUpRight className="w-4 h-4 text-black" />
@@ -839,12 +839,12 @@ export default function App() {
 
           {/* Contact Section */}
           <section id="contact" className="py-32 px-6 md:px-12 relative overflow-hidden bg-[#FFFFFF]">
-             {/* Background glow */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#DFF4FF] rounded-full blur-[150px] pointer-events-none opacity-60" />
+            {/* Background glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#DFF4FF] rounded-full blur-[150px] pointer-events-none opacity-60" />
 
             <div className="max-w-4xl mx-auto relative z-10 bg-white/60 border border-white/40 backdrop-blur-[20px] rounded-[3rem] p-10 md:p-20 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
               <div className="text-center mb-16">
-                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-black">Let's Create<br/>Something Epic</h2>
+                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-black">Let's Create<br />Something Epic</h2>
                 <p className="text-xl text-black/60 font-light">Available for freelance opportunities and collaborations.</p>
               </div>
 
@@ -858,10 +858,22 @@ export default function App() {
                         <Instagram className="w-6 h-6" /> @aura.edit_ae
                         <ArrowUpRight className="w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                       </a>
-                      
+
                       {/* GitHub (NEW ADDITION) */}
                       <a href="https://github.com/YOUR_USERNAME" target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 text-xl font-bold text-black hover:opacity-70 transition-opacity group interactive">
                         <Github className="w-6 h-6" /> /vivin-m
+                        <ArrowUpRight className="w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                      </a>
+
+                      {/* Discord */}
+                      <a href="https://discord.gg/g9M7eRpjYB" target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 text-xl font-bold text-black hover:opacity-70 transition-opacity group interactive">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><path d="M14.9 8.2c-1.3-.9-2.9-1.5-4.4-1.7-.1 0-.1.1-.2.2-.3.6-.6 1.3-.9 2-1.8 0-3.6 0-5.3 0-.3-.7-.6-1.4-.9-2-.1-.1-.1-.1-.2-.2-1.5.2-3.1.8-4.4 1.7C-4.3 20.3 1.7 28.5 7.1 27.8c1.3-.2 2.6-.7 3.8-1.4.1-.1.2-.2.1-.3-.3-.4-.6-.8-.8-1.2-.1-.1-.2-.1-.3-.1-1.3.4-2.5 1-3.7 1.7-.2.1-.4-.1-.3-.2.2-.3.5-.6.7-.8 2.2-1.4 4.5-2.2 6.9-2.2v-1.1c-2.4 0-4.7.7-6.9 2.2-.3.2-.5.5-.7.8-.1.2.1.4.3.2 1.2-.7 2.4-1.3 3.7-1.7.1 0 .2 0 .3.1.2.4.5.8.8 1.2.1.2 0 .3-.1.3-1.2.7-2.5 1.2-3.8 1.4-5.4.7-11.4-7.5-8.4-19.6z" /><path d="M14.9 8.2c-1.3-.9-2.9-1.5-4.4-1.7-.1 0-.1.1-.2.2-.3.6-.6 1.3-.9 2-1.8 0-3.6 0-5.3 0-.3-.7-.6-1.4-.9-2-.1-.1-.1-.1-.2-.2-1.5.2-3.1.8-4.4 1.7-1.5 2.8-2.6 6.3-2.6 10.3 0 .1 0 .2.1.3 1.9 2.3 4.4 3.9 7 4.9.1 0 .2 0 .3-.1.5-.7 1-1.4 1.4-2.2.1-.1 0-.3-.1-.3-1.1-.3-2.2-.8-3.3-1.4-.2-.1-.2-.3-.1-.4.1-.1.3-.2.4-.3.1-.1.2-.1.3-.1 3.5 1.4 7.4 1.4 10.9 0 .1 0 .2 0 .3.1.1.1.2.2.4.3.1.1.1.3-.1.4-1.1.6-2.2 1.1-3.3 1.4-.1.1-.2.2-.1.3.4.8.9 1.5 1.4 2.2.1.1.2.1.3.1 2.6-1 5.1-2.6 7-4.9.1-.1.1-.2.1-.3 0-4-1.1-7.5-2.6-10.3zM8.3 17.5c-1.1 0-2-.9-2-2.1s.9-2.1 2-2.1c1.1 0 2 .9 2 2.1 0 1.2-.9 2.1-2 2.1zm7.4 0c-1.1 0-2-.9-2-2.1s.9-2.1 2-2.1c1.1 0 2 .9 2 2.1 0 1.2-.9 2.1-2 2.1z" /></svg> Discord
+                        <ArrowUpRight className="w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                      </a>
+
+                      {/* YouTube */}
+                      <a href="https://youtube.com/channel/UCo7jnNZaO9wP9Ru6_5sei-w" target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 text-xl font-bold text-black hover:opacity-70 transition-opacity group interactive">
+                        <Youtube className="w-6 h-6" /> YouTube
                         <ArrowUpRight className="w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                       </a>
                     </div>
@@ -891,7 +903,7 @@ export default function App() {
                     <textarea placeholder="Type some rough notes here..." name="message" required value={formState.message} onChange={handleInputChange} rows={3} className="w-full bg-transparent border-b border-black/10 pb-4 text-lg text-black focus:outline-none focus:border-black transition-colors placeholder:text-black/40 resize-none" />
                     <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-black group-focus-within:w-full transition-all duration-500" />
                   </div>
-                  
+
                   <MagneticButton primary className={`py-4 mt-6 w-full sm:w-auto self-start ${isSubmitting ? 'opacity-80 cursor-wait' : ''}`} disabled={isSubmitting}>
                     {isSubmitting ? (
                       <>Sending <Loader2 className="w-4 h-4 animate-spin" /></>
